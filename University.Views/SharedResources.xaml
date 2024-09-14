@@ -1,0 +1,12 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/University.Controls;component/TextBlocks.xaml" />
+        <ResourceDictionary Source="/University.Controls;component/TextBoxes.xaml"/>
+        <ResourceDictionary Source="/University.Controls;component/Buttons.xaml" />
+        <ResourceDictionary Source="/University.Controls;component/ListViews.xaml"/>
+        <ResourceDictionary Source="/University.Controls;component/TabControls.xaml"/>
+        <ResourceDictionary Source="/University.Views;component/DataTemplates.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

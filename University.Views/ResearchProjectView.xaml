@@ -1,0 +1,123 @@
+<UserControl x:Class="University.Views.ResearchProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/University.Views;component/SharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Add Button -->
+        <DockPanel Grid.Row="0" LastChildFill="False">
+            <Button Content="Add Research Project" 
+                    Command="{Binding Add}" 
+                    DockPanel.Dock="Right" 
+                    Margin="5" 
+                    Style="{StaticResource PrimaryButton}" 
+                    Tag="&#xE710;" />
+        </DockPanel>
+
+        <!-- List of Research Projects -->
+        <ListView Grid.Row="1" 
+                  ItemsSource="{Binding ResearchProjects}" 
+                  BorderThickness="0" 
+                  ItemContainerStyle="{StaticResource ListViewPrimaryItem}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Project ID" DisplayMemberBinding="{Binding ProjectId}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ProjectId}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Supervisor" DisplayMemberBinding="{Binding Supervisor}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Supervisor}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartDate, StringFormat=\{0:yyyy-MM-dd\}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EndDate, StringFormat=\{0:yyyy-MM-dd\}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Budget" DisplayMemberBinding="{Binding Budget}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Budget, StringFormat=C}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Team Members" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding TeamMembers}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Edit">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.Edit, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" 
+                                        CommandParameter="{Binding ProjectId}" 
+                                        Style="{StaticResource SecondaryButton}" 
+                                        Tag="&#xE70F;" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Remove">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.Remove, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" 
+                                        CommandParameter="{Binding ProjectId}" 
+                                        Style="{StaticResource SecondaryButton}" 
+                                        Tag="&#xE74D;" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
